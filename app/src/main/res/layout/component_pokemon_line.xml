@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:cardBackgroundColor="@color/color_surface"
+            app:cardElevation="4dp"
+            card_view:cardCornerRadius="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_pokemon_logo_Shiny"
+                android:layout_width="@dimen/image_size_medium"
+                android:layout_height="@dimen/image_size_medium"
+                android:layout_marginStart="284dp"
+                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginBottom="@dimen/little_margin"
+                android:contentDescription="@string/preview_pokemon"
+                android:transitionName="@string/_transition_Shiny"
+                app:layout_constraintVertical_bias="0.0"
+                card_view:imageUrl="@{item.imageShinyUrl}"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars"
+                tools:targetApi="lollipop" />
+
+            <ImageView
+                android:id="@+id/iv_pokemon_logo"
+                android:layout_width="@dimen/image_size_medium"
+                android:layout_height="@dimen/image_size_medium"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginBottom="@dimen/little_margin"
+                android:contentDescription="@string/preview_pokemon"
+                android:transitionName="@string/_transition"
+                app:imageUrl="@{item.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:srcCompat="@tools:sample/avatars"
+                tools:targetApi="lollipop" />
+
+            <TextView
+                android:id="@+id/tv_pokemon_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@{String.format(@string/number, item.number)}"
+                android:textAppearance="@style/TextAppearance.TuttidexTheme.Headline5"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_pokemon_logo"
+                app:layout_constraintStart_toEndOf="@+id/iv_pokemon_logo"
+                app:layout_constraintTop_toTopOf="@+id/iv_pokemon_logo"
+                tools:text="N° 1" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="129dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{item.name}"
+                android:textAppearance="@style/TextAppearance.TuttidexTheme.Body1"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_pokemon_number"
+                app:layout_constraintEnd_toStartOf="@+id/cv_pokemon_capture"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_pokemon_number"
+                tools:text="Bulbasaur" />
+
+            <com.github.florent37.shapeofview.ShapeOfView
+                android:id="@+id/cv_pokemon_capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                app:shape_clip_drawable="@drawable/ic_pokeball">
+
+                <ImageView
+                    android:id="@+id/iv_pokemon_capture"
+                    android:layout_width="@dimen/image_size_little"
+                    android:layout_height="@dimen/image_size_little"
+                    android:contentDescription="@string/content_description_capture"
+                    android:onClick="@{() -> viewModel.onCaptured(item)}"
+                    android:src="@{item.captured ? @drawable/ic_pokeball : @drawable/ic_pokeball_empty}"
+                    tools:src="@drawable/ic_pokeball_empty" />
+            </com.github.florent37.shapeofview.ShapeOfView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <data>
+        <variable name="item" type="edu.pokemon.iut.tuttidex.ui.model.Pokemon"/>
+        <variable name="viewModel" type="edu.pokemon.iut.tuttidex.ui.pokemonlist.PokemonListViewModel"/>
+    </data>
+</layout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cl_pokemon_type_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:id="@+id/tv_type_pokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cv_pokemon_capture"
+            app:layout_constraintEnd_toStartOf="@+id/cv_pokemon_capture"
+            app:layout_constraintTop_toTopOf="@+id/cv_pokemon_capture"
+            tools:text="Bug"/>
+
+    <com.github.florent37.shapeofview.shapes.CircleView
+            android:id="@+id/cv_pokemon_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="lollipop">
+
+        <ImageView
+            android:id="@+id/iv_type_pokemon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/type_pokemon_color"
+                android:src="@drawable/ic_circle_full_black_24dp"
+        />
+
+    </com.github.florent37.shapeofview.shapes.CircleView>
+</androidx.constraintlayout.widget.ConstraintLayout>

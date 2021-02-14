@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/dark_mode_switch"
+        android:title="Switch"
+        android:checkable="true"
+        app:actionLayout="@layout/switch_item"
+        app:actionViewClass="android.widget.Switch"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/filterByCaptured"
+        android:button="@drawable/pokemon_ball_selector"
+        android:checkable="true"
+        android:title="@string/filter_captured"
+        app:actionViewClass="android.widget.CheckBox"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_24dp"
+        android:title="@string/search_hint"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+            android:id="@+id/aboutFragment"
+            android:title="@string/about" />
+</menu>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.pokemoncreate.PokemonCreateFragment">
+
+            <ImageView
+                    android:id="@+id/preview_pokemon"
+                    android:layout_width="@dimen/image_size_medium"
+                    android:layout_height="@dimen/image_size_medium"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/preview_pokemon"
+                    app:imageUrlNoCache="@{pokemonCreateViewModel.image}"
+                    app:layout_constraintStart_toEndOf="@+id/button_add_photo"
+                    app:layout_constraintTop_toTopOf="@+id/button_add_photo"/>
+
+            <TextView
+                    android:id="@+id/tv_pokemon_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/little_margin"
+                    android:text="@{@string/number(pokemonCreateViewModel.number)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_add_photo"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/add_photo"
+                    app:icon="@drawable/ic_add_a_photo_24dp"
+                    app:iconGravity="start"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_pokemon_types"
+            />
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_create_pokemon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/little_margin"
+                    android:onClick="@{() -> pokemonCreateViewModel.onCreatePokemon()}"
+                    android:text="@string/create_pokemon"
+                    app:icon="@drawable/ic_add_circle_24dp"
+                    app:iconGravity="start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/preview_pokemon"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_pokemon_base_exp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/little_margin"
+                    app:error="@{pokemonCreateViewModel.errorBaseExp}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_pokemon_weight">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/base_exp"
+                        android:inputType="number"
+                        android:text="@={pokemonCreateViewModel.baseExp}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_pokemon_types"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/little_margin"
+                    app:error="@{pokemonCreateViewModel.errorTypes}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_pokemon_base_exp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/types"
+                        android:text="@={pokemonCreateViewModel.types}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_pokemon_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/little_margin"
+                    app:error="@{pokemonCreateViewModel.errorName}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pokemon_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name"
+                        android:text="@={pokemonCreateViewModel.name}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_pokemon_height"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/little_margin"
+                    app:error="@{pokemonCreateViewModel.errorHeight}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_pokemon_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/ht_hint"
+                        android:inputType="number"
+                        android:text="@={pokemonCreateViewModel.height}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_pokemon_weight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/little_margin"
+                    app:error="@{pokemonCreateViewModel.errorWeight}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_pokemon_height">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/wt_hint"
+                        android:inputType="number"
+                        android:text="@={pokemonCreateViewModel.weight}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <data>
+        <variable name="pokemonCreateViewModel" type="edu.pokemon.iut.tuttidex.ui.pokemoncreate.PokemonCreateViewModel"/>
+    </data>
+
+</layout>
